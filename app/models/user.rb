@@ -3,4 +3,5 @@ class User
   field :name, type: String
   field :email, type: String
   field :password, type: String
+  has_many :groups
 end

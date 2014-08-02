@@ -1,0 +1,14 @@
+<h1>GROUPS</h1>
+
+<% @groups.each do |group| %>
+<div>
+  <h3><%= group.name %></h3>
+  <p><em><%= group.description %></em></p>
+  <br>
+</div>
+<% end %>
+
+<div>
+  <h3>+ <%= link_to 'Group' %></h3>
+</div>
+

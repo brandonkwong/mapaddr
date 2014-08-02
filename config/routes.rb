@@ -1,4 +1,14 @@
 Mapaddr::Application.routes.draw do
+
+  get 'groups/' => 'groups#index'
+
+  get 'groups/:id' => 'groups#show', as: :group
+
+  get 'groups/new' => 'groups#new', as: :new
+
+  get 'locations/' => 'locations#index'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
