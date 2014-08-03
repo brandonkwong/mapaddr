@@ -2,9 +2,26 @@ Mapaddr::Application.routes.draw do
 
   get 'groups/' => 'groups#index'
 
-  get 'groups/:id' => 'groups#show', as: :group
+  get 'groups/new' => 'groups#new'
 
-  get 'groups/new' => 'groups#new', as: :new
+  get 'groups/:id' => 'groups#show'
+
+  post 'groups/' => 'groups#create'
+
+  get 'groups/:id/edit' => 'groups#edit', as: :edit
+
+  patch 'groups/:id' => 'groups#update'
+
+  delete 'groups/:id' => 'groups#destroy'
+
+
+
+
+
+  # # # # #
+
+
+
 
   get 'locations/' => 'locations#index'
 
