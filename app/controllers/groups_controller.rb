@@ -4,6 +4,8 @@ class GroupsController < ApplicationController
   def index
     @groups = Group.all
     new
+
+    @locations = Location.all
   end
 
   # GET

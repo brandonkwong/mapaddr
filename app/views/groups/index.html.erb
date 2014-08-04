@@ -17,5 +17,15 @@
   <p><em><%= g.description %></em></p>
   <%= link_to 'Edit', edit_path(g) %>
   <br><br>
+
+  <% @locations.each do |l| %>
+  <li>
+    <h4><%= l.name %></h4>
+    <%= l.address %>
+      <br>
+    <em><%= l.description %></em>
+  </li>
+  <% end %>
+
 </div>
 <% end %>
