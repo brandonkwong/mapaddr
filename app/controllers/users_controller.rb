@@ -1,29 +1,33 @@
 class UsersController < ApplicationController
 
   def index
-    @groups = Group.all
+    @users = User.all
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
   
   def new
-    @group = Group.new
+    @user = User.new
   end
 
   def create
-    @group = Group.new(params.require(:group).permit(:name, :description))
-    if @group.save
+    @user = User.new(params.require(:user).permit(:name, :email, :hashed_password))
+    if @user.save
       redirect_to root_path
     else
-      # render 'new' does not exist / replace with error message
+      render 'new'  
     end
   end
 
   def edit
-    @group = Group.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update
-    @group = Group.find(params[:id])
-    if @group.update_attributes(params.require(:group).permit(:name, :description))
+    @user = User.find(params[:id])
+    if @user.update_attributes(params.require(:user).permit(:name, :email, :hashed_password))
       redirect_to root_path
     else
       render 'edit'
@@ -31,9 +35,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    Group.find(params[:id]).destroy
+    User.find(params[:id]).destroy
     redirect_to root_path
   end
-
 
 end

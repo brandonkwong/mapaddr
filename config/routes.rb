@@ -1,19 +1,25 @@
 Mapaddr::Application.routes.draw do
 
   get 'groups/' => 'groups#index'
+  get 'groups/:id' => 'groups#show', as: :group
   post 'groups/' => 'groups#create'
-  get 'groups/:id' => 'groups#edit', as: :group
+  get 'groups/:id/edit' => 'groups#edit', as: :edit_group
   patch 'groups/:id' => 'groups#update'
   delete 'groups/:id' => 'groups#destroy'
 
-  root 'groups#index'
-
+  get 'users/' => 'users#index'
+  get 'users/new' => 'users#new', as: :new_user
+  get 'users/:id' => 'users#show', as: :user
+  post 'users/' => 'users#create'
+  get 'users/:id/edit' => 'users#edit', as: :edit_user
+  patch 'users/:id' => 'users#update'
+  delete 'users/:id' => 'users#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'groups#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
