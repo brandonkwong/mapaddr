@@ -1,40 +1,39 @@
-# class UsersController < ApplicationController
+class UsersController < ApplicationController
 
-#   def index
-#     @groups = Group.all
-
-#   end
+  def index
+    @groups = Group.all
+  end
   
-#   def new
-#     @group = Group.new
-#   end
+  def new
+    @group = Group.new
+  end
 
-#   def create
-#     @group = Group.new(params.require(:group).permit(:name, :description))
-#     if @group.save
-#       redirect_to root_path
-#     else
-#       # render 'new' does not exist / replace with error message
-#     end
-#   end
+  def create
+    @group = Group.new(params.require(:group).permit(:name, :description))
+    if @group.save
+      redirect_to root_path
+    else
+      # render 'new' does not exist / replace with error message
+    end
+  end
 
-#   def edit
-#     @group = Group.find(params[:id])
-#   end
+  def edit
+    @group = Group.find(params[:id])
+  end
 
-#   def update
-#     @group = Group.find(params[:id])
-#     if @group.update_attributes(params.require(:group).permit(:name, :description))
-#       redirect_to root_path
-#     else
-#       render 'edit'
-#     end
-#   end
+  def update
+    @group = Group.find(params[:id])
+    if @group.update_attributes(params.require(:group).permit(:name, :description))
+      redirect_to root_path
+    else
+      render 'edit'
+    end
+  end
 
-#   def destroy
-#     Group.find(params[:id]).destroy
-#     redirect_to root_path
-#   end
+  def destroy
+    Group.find(params[:id]).destroy
+    redirect_to root_path
+  end
 
 
-# end
+end
