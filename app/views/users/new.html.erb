@@ -1,1 +1,10 @@
-<h1>users#new</h1>
+<h1>users#new (sign up)</h1>
+
+<%= form_for @user do |f| %>
+  <%= f.text_field :name, placeholder: 'Name' %><br>
+  <%= f.text_field :email, placeholder: 'Email' %><br>
+  <%= f.password_field :password, placeholder: 'Password' %><br>
+  <%= f.password_field :password_confirmation, placeholder: 'Confirm Password' %><br>
+    <br>
+  <%= f.submit 'Submit' %>
+<% end %>

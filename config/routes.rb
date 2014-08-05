@@ -1,5 +1,7 @@
 Mapaddr::Application.routes.draw do
 
+  resource :session, only: [:new, :create, :destroy]
+
   get 'groups/' => 'groups#index'
   get 'groups/:id' => 'groups#show', as: :group
   post 'groups/' => 'groups#create'
