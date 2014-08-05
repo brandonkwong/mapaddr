@@ -8,23 +8,28 @@
   <br>
 
 <% @groups.each do |g| %>
-<div>
-  <hr>
+<div class="group">
+
+    <hr>
+
   <h3><%= g.name %></h3>
   <p><em><%= g.description %></em></p>
   <%= link_to 'Edit', group_path(g) %>
-  <br><br>
 
+    <br><br>
+
+  <ul class="locations">
   <% @locations.each do |l| %>
-  <li>
-    <h4><%= l.name %></h4>
-    <%= l.address %>
-      <br>
-    <em><%= l.description %></em>
-  </li>
+    <li>
+      <h4><%= l.name %></h4>
+      <%= l.address %>
+        <br>
+      <em><%= l.description %></em>
+    </li>
   <% end %>
+  </ul>
 
-  <br>
+    <br>
 
 </div>
 <% end %>
