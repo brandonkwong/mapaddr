@@ -2,20 +2,17 @@
 
 <div>
   <h3><%= link_to 'Groups' %></h3>
-  <%= form_for @group do |f| %>
-    <%= f.text_field :name, placeholder: 'Name' %><br>
-    <%= f.text_field :description, placeholder: 'Description' %><br>
-    <%= f.submit 'Add Group' %>
-  <% end %>
+  <%= render 'f.group' %>
 </div>
 
   <br>
 
 <% @groups.each do |g| %>
 <div>
+  <hr>
   <h3><%= g.name %></h3>
   <p><em><%= g.description %></em></p>
-  <%= link_to 'Edit', edit_path(g) %>
+  <%= link_to 'Edit', group_path(g) %>
   <br><br>
 
   <% @locations.each do |l| %>
@@ -26,6 +23,8 @@
     <em><%= l.description %></em>
   </li>
   <% end %>
+
+  <br>
 
 </div>
 <% end %>

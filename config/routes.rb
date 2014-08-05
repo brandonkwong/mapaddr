@@ -1,29 +1,13 @@
 Mapaddr::Application.routes.draw do
 
   get 'groups/' => 'groups#index'
-
-  get 'groups/new' => 'groups#new'
-
-  get 'groups/:id' => 'groups#show'
-
+  get 'groups/' => 'groups#new'
   post 'groups/' => 'groups#create'
-
-  get 'groups/:id/edit' => 'groups#edit', as: :edit
-
+  get 'groups/:id' => 'groups#edit', as: :group
   patch 'groups/:id' => 'groups#update'
-
   delete 'groups/:id' => 'groups#destroy'
 
-
-
-
-
-  # # # # #
-
-
-
-
-  get 'locations/' => 'locations#index'
+  root 'groups#index'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,11 +1,4 @@
 <h2><%= @group.name %></h2>
-
-<%= form_for @group do |f| %>
-  <%= f.text_field :name, placeholder: 'Name' %><br>
-  <%= f.text_field :description, placeholder: 'Description' %><br>
-  <%= f.submit 'Edit Group' %>
-<% end %>
-
+<%= render 'f.group' %>
   <br>
-
 <%= link_to 'Delete', :group, method: :delete, data: { confirm: 'Are you sure you want to permanently delete this group?' } %>
