@@ -1,7 +1,6 @@
 Mapaddr::Application.routes.draw do
 
   get 'groups/' => 'groups#index'
-  get 'groups/' => 'groups#new'
   post 'groups/' => 'groups#create'
   get 'groups/:id' => 'groups#edit', as: :group
   patch 'groups/:id' => 'groups#update'

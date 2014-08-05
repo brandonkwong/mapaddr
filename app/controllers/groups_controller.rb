@@ -16,7 +16,7 @@ class GroupsController < ApplicationController
     if @group.save
       redirect_to root_path
     else
-      render 'new'
+      # render 'new' does not exist / replace with error message
     end
   end
 
@@ -34,7 +34,7 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    @group = Group.find(params[:id]).destroy
+    Group.find(params[:id]).destroy
     redirect_to root_path
   end
 
