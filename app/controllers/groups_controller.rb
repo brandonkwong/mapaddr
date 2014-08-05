@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
 
     @locations = Location.all
   end
-
+  
   def new
     @group = Group.new
   end
