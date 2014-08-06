@@ -2,20 +2,25 @@ Mapaddr::Application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
-  get 'groups/' => 'groups#index'
-  get 'groups/:id' => 'groups#show', as: :group
-  post 'groups/' => 'groups#create'
-  get 'groups/:id/edit' => 'groups#edit', as: :edit_group
-  patch 'groups/:id' => 'groups#update'
-  delete 'groups/:id' => 'groups#destroy'
+  resources :groups, except: :new do
+    resources :locations
+  end
 
-  get 'users/' => 'users#index'
-  get 'users/new' => 'users#new', as: :new_user
-  get 'users/:id' => 'users#show', as: :user
-  post 'users/' => 'users#create'
-  get 'users/:id/edit' => 'users#edit', as: :edit_user
-  patch 'users/:id' => 'users#update'
-  delete 'users/:id' => 'users#destroy'
+  resources :users, except: :index
+
+  # get 'groups/' => 'groups#index', as: :groups
+  # get 'groups/:id' => 'groups#show', as: :group
+  # post 'groups/' => 'groups#create'
+  # get 'groups/:id/edit' => 'groups#edit', as: :edit_group
+  # patch 'groups/:id' => 'groups#update'
+  # delete 'groups/:id' => 'groups#destroy'
+
+  # get 'users/new' => 'users#new', as: :new_user
+  # get 'users/:id' => 'users#show', as: :user
+  # post 'users/' => 'users#create'
+  # get 'users/:id/edit' => 'users#edit', as: :edit_user
+  # patch 'users/:id' => 'users#update'
+  # delete 'users/:id' => 'users#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
