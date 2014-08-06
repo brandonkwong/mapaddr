@@ -1,4 +1,4 @@
-<!-- Group Form -->
+<!-- Add Group Form -->
 <div>
   <h3>Groups +</h3>
   <%= render 'f.group' %>
@@ -6,12 +6,12 @@
   
   <br>
 
-<!-- Groups List -->
-<% @groups.each do |g| %>
+<!-- Display Groups List -->
+<% @groups.sort_by{ |alpha| alpha.name.downcase }.each do |g| %>
 <hr>
 <div class="group">
 
-  <!-- Group Name -->
+  <!-- Display Group Name -->
   <h3><%= g.name %></h3>
   <h4><em><%= g.description %></em></h4>
   <%= link_to 'Edit', edit_group_path(g) %> /
@@ -19,7 +19,7 @@
 
     <br><br>
 
-  <!-- Group Location Form -->
+  <!-- Add Group Location Form -->
   <h4>Locations +</h4>
   <%= form_for [g, @location] do |f| %>
     <%= f.text_field :name, placeholder: 'Name' %><br>
@@ -31,9 +31,9 @@
 
     <br>
 
-  <!-- Group Locations -->
+  <!-- Display Group Locations -->
   <ul class="locations">
-  <% g.locations.each do |l| %>
+  <% g.locations.sort_by{ |alpha| alpha.name.downcase }.each do |l| %>
     <li>
       <h4><%= l.name %></h4>
       <%= l.address %>
