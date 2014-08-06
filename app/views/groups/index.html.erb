@@ -1,7 +1,7 @@
-<h1>GROUPS.ALL TEST</h1>
-<h2>Delete groups#index later</h2>
-
-  <br><br>
+<div style="color: red;">
+  <h1>TESTING: GROUPS</h1>
+  <h2>(delete groups#index later)</h2>
+</div>
 
 <!-- Display Groups List -->
 <% @groups.sort_by{ |alpha| alpha.name.downcase }.each do |g| %>
@@ -13,20 +13,6 @@
   <h4><em><%= g.description %></em></h4>
   <%= link_to 'Edit', edit_group_path(g) %> /
   <%= link_to 'Delete', g, method: :delete, data: { confirm: "Permanently delete #{g.name}?" } %>
-
-    <br><br>
-
-  <!-- Add Group Location Form -->
-  <h4>Locations +</h4>
-  <%= form_for [g, @location] do |f| %>
-    <%= f.text_field :name, placeholder: 'Name' %><br>
-    <%= f.text_field :address, placeholder: 'Address' %><br>
-    <%= f.text_field :description, placeholder: 'Description' %><br>
-      <br>
-    <%= f.submit 'Add' %>
-  <% end %>
-
-    <br>
 
   <!-- Display Group Locations -->
   <ul class="locations">
