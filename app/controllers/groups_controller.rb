@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(params.require(:group).permit(:name, :description))
+    @group = current_user.groups.new(params.require(:group).permit(:name, :description))
     if @group.save
       redirect_to root_path
     else
@@ -18,7 +18,11 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    @group = Group.find(params[:id])
+    if current_user
+      @group = Group.find(params[:id])
+    else
+      redirect_to new_user_path # build a welcome page
+    end
   end
 
   def update

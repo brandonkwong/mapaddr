@@ -1,0 +1,31 @@
+<!-- Display User Name -->
+<h1><%= @user.name %>'s Addrs</h1>
+
+<!-- Display Groups List -->
+<% @groups.sort_by{ |alpha| alpha.name.downcase }.each do |g| %>
+<hr>
+<div class="group">
+
+  <!-- Display Group Name -->
+  <h3><%= g.name %></h3>
+  <h4><em><%= g.description %></em></h4>
+
+    <br><br>
+
+  <!-- Display Group Locations -->
+  <ul class="locations">
+  <% g.locations.sort_by{ |alpha| alpha.name.downcase }.each do |l| %>
+    <li>
+      <h4><%= l.name %></h4>
+      <%= l.address %>
+        <br>
+      <em><%= l.description %></em>
+        <br>
+    </li>
+  <% end %>
+  </ul>
+
+    <br>
+
+</div>
+<% end %>

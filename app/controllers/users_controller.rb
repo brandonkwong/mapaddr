@@ -1,20 +1,26 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    if current_user
+      @groups = current_user.groups.all
+      @group = current_user.groups.new
+      @locations = @group.locations
+      @location = Location.new
+    else
+      redirect_to new_user_path # build a welcome page
+    end
   end
 
   def show
     @user = User.find(params[:id])
+    @groups = @user.groups.all
   end
   
-  # Prepare to show sign up form
   def new
     @user = User.new
     @is_signup = true
   end
 
-  # Actually builds the user
   def create
     @user = User.new(params.require(:user).permit(:name, :email, :password, :password_confirmation))
     if @user.save

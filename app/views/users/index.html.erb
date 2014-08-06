@@ -1,1 +1,62 @@
-<h1>users#index</h1>
+<h1>root users#index</h1>
+
+
+<!-- START -->
+
+<!-- Add Group Form -->
+<div>
+  <h3>Groups +</h3>
+  <%= form_for @group do |f| %>
+    <%= f.text_field :name, placeholder: 'Name' %><br>
+    <%= f.text_field :description, placeholder: 'Description' %><br>
+      <br>
+    <%= f.submit 'Add' %>
+  <% end %>
+</div>
+  
+  <br>
+
+<!-- Display Groups List -->
+<% @groups.sort_by{ |alpha| alpha.name.downcase }.each do |g| %>
+<hr>
+<div class="group">
+
+  <!-- Display Group Name -->
+  <h3><%= g.name %></h3>
+  <h4><em><%= g.description %></em></h4>
+  <%= link_to 'Edit', edit_group_path(g) %> /
+  <%= link_to 'Delete', g, method: :delete, data: { confirm: "Permanently delete #{g.name}?" } %>
+
+    <br><br>
+
+  <!-- Add Group Location Form -->
+  <h4>Locations +</h4>
+  <%= form_for [g, @location] do |f| %>
+    <%= f.text_field :name, placeholder: 'Name' %><br>
+    <%= f.text_field :address, placeholder: 'Address' %><br>
+    <%= f.text_field :description, placeholder: 'Description' %><br>
+      <br>
+    <%= f.submit 'Add' %>
+  <% end %>
+
+    <br>
+
+  <!-- Display Group Locations -->
+  <ul class="locations">
+  <% g.locations.sort_by{ |alpha| alpha.name.downcase }.each do |l| %>
+    <li>
+      <h4><%= l.name %></h4>
+      <%= l.address %>
+        <br>
+      <em><%= l.description %></em>
+        <br>
+      <%= link_to 'Edit', edit_group_location_path(g, l) %> /
+      <%= link_to 'Delete', group_location_path(g, l), method: :delete, data: { confirm: "Permanently delete #{l.name}?" } %>
+    </li>
+  <% end %>
+  </ul>
+
+    <br>
+
+</div>
+<% end %>

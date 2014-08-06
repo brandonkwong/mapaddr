@@ -2,11 +2,11 @@ Mapaddr::Application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
+  resources :users
+
   resources :groups, except: :new do # add except :index if changing root
     resources :locations, except: [:index, :new]
   end
-
-  resources :users, except: :index
 
   # get 'groups/' => 'groups#index', as: :groups
   # get 'groups/:id' => 'groups#show', as: :group
@@ -26,7 +26,7 @@ Mapaddr::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'groups#index'
+  root 'users#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

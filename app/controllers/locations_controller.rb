@@ -12,8 +12,12 @@ class LocationsController < ApplicationController
   end
 
   def edit
-    @group = Group.find(params[:group_id])
-    @location = Location.find(params[:id])
+    if current_user
+      @group = Group.find(params[:group_id])
+      @location = Location.find(params[:id])
+    else
+      redirect_to new_user_path # build a welcome page
+    end
   end
 
   def update
