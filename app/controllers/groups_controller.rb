@@ -2,13 +2,10 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.all
-    new
-
-    @locations = Location.all
-  end
-  
-  def new
     @group = Group.new
+
+    @locations = @group.locations
+    @location = Location.new
   end
 
   def create
