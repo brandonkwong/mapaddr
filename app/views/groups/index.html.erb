@@ -3,25 +3,24 @@
   <h3>Groups +</h3>
   <%= render 'f.group' %>
 </div>
-
+  
   <br>
 
+<!-- Groups List -->
 <% @groups.each do |g| %>
+<hr>
 <div class="group">
-
-    <hr>
 
   <!-- Group Name -->
   <h3><%= g.name %></h3>
   <h4><em><%= g.description %></em></h4>
   <%= link_to 'Edit', edit_group_path(g) %> /
-  <%= link_to 'Delete', g, method: :delete, data: { confirm: 'Are you sure you want to permanently delete this group?' } %>
+  <%= link_to 'Delete', g, method: :delete, data: { confirm: "Permanently delete #{g.name}?" } %>
 
-    <br>
+    <br><br>
 
   <!-- Group Location Form -->
-  <hr>
-  <h4><%= g.name %> Locations +</h4>
+  <h4>Locations +</h4>
   <%= form_for [g, @location] do |f| %>
     <%= f.text_field :name, placeholder: 'Name' %><br>
     <%= f.text_field :address, placeholder: 'Address' %><br>
@@ -30,7 +29,7 @@
     <%= f.submit 'Add' %>
   <% end %>
 
-  <br>
+    <br>
 
   <!-- Group Locations -->
   <ul class="locations">
@@ -42,8 +41,7 @@
       <em><%= l.description %></em>
         <br>
       <%= link_to 'Edit', edit_group_location_path(g, l) %> /
-      <%= link_to 'Delete', group_location_path(g, l), method: :delete, data: { confirm: 'Are you sure you want to permanently delete this location?' } %>
-
+      <%= link_to 'Delete', group_location_path(g, l), method: :delete, data: { confirm: "Permanently delete #{l.name}?" } %>
     </li>
   <% end %>
   </ul>

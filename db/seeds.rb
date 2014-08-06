@@ -7,24 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-# User seeds
-users = User.create([
-
-  {
-    name: 'Brandon Kwong',
-    email: 'brandonjk@gmail.com',
-    password: '********'
-  },
-
-  {
-    name: 'Grace Young',
-    email: 'graceyoung1@gmail.com',
-    password: '********'
-  }
-
-])
-
-
 # Group seeds
 groups = Group.create([
 
@@ -53,7 +35,6 @@ locations = Location.create([
     name: 'Alejandro',
     address: '1803 Malcolm Ave, Los Angeles, CA 90025',
     description: 'Westwood hangout',
-    # group: @groups.name = 'Friends'
   },
 
   {
