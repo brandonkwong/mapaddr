@@ -46,3 +46,6 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Connect Rails to Heroku
+gem 'rails_12factor'

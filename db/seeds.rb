@@ -7,58 +7,58 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-# Group seeds
-groups = Group.create([
+# # Group seeds
+# groups = Group.create([
 
-  {
-    name: 'Friends',
-    description: 'To the homies'
-  },
+#   {
+#     name: 'Friends',
+#     description: 'To the homies'
+#   },
 
-  {
-    name: 'Shops',
-    description: 'Buy all the things'
-  },
+#   {
+#     name: 'Shops',
+#     description: 'Buy all the things'
+#   },
 
-  {
-    name: 'Restaurants',
-    description: 'For the foodies'
-  }
+#   {
+#     name: 'Restaurants',
+#     description: 'For the foodies'
+#   }
 
-])
+# ])
 
 
-# Location seeds
-locations = Location.create([
+# # Location seeds
+# locations = Location.create([
 
-  {
-    name: 'Alejandro',
-    address: '1803 Malcolm Ave, Los Angeles, CA 90025',
-    description: 'Westwood hangout',
-  },
+#   {
+#     name: 'Alejandro',
+#     address: '1803 Malcolm Ave, Los Angeles, CA 90025',
+#     description: 'Westwood hangout',
+#   },
 
-  {
-    name: 'The Hundreds',
-    address: '416 Broadway St, Santa Monica, CA 90401',
-    description: 'Bobby Hundreds Adam Bomb'
-  },
+#   {
+#     name: 'The Hundreds',
+#     address: '416 Broadway St, Santa Monica, CA 90401',
+#     description: 'Bobby Hundreds Adam Bomb'
+#   },
 
-  {
-    name: 'Buffalo Exchange',
-    address: '2449 Main St, Santa Monica, CA 90405',
-    description: 'Best consignment clothing'
-  },
+#   {
+#     name: 'Buffalo Exchange',
+#     address: '2449 Main St, Santa Monica, CA 90405',
+#     description: 'Best consignment clothing'
+#   },
 
-  {
-    name: 'Sugarfish',
-    address: '1345 2nd St, Santa Monica, CA 90401',
-    description: 'Super dope sushi'
-  },
+#   {
+#     name: 'Sugarfish',
+#     address: '1345 2nd St, Santa Monica, CA 90401',
+#     description: 'Super dope sushi'
+#   },
 
-  {
-    name: 'Bay Cities Deli',
-    address: '1517 Lincoln Blvd, Santa Monica, CA 90401',
-    description: 'All for the Godmother'
-  }
+#   {
+#     name: 'Bay Cities Deli',
+#     address: '1517 Lincoln Blvd, Santa Monica, CA 90401',
+#     description: 'All for the Godmother'
+#   }
 
 ])
