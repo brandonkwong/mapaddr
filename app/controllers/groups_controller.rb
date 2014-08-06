@@ -18,7 +18,7 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    if current_user.id == Group.find(params[:id]).user_id
+    if current_user && current_user.id == Group.find(params[:id]).user_id
       @group = Group.find(params[:id])
     else
       redirect_to new_user_path # build a welcome page

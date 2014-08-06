@@ -5,4 +5,5 @@ class Location
   field :description, type: String
 
   belongs_to :group
+  belongs_to :user
 end

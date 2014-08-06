@@ -12,7 +12,7 @@ class LocationsController < ApplicationController
   end
 
   def edit
-    if current_user.id == Group.find(params[:group_id]).user_id
+    if current_user && current_user.id == Group.find(params[:group_id]).user_id
       @group = Group.find(params[:group_id])
       @location = Location.find(params[:id])
     else

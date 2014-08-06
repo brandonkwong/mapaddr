@@ -9,5 +9,5 @@ class User
   has_secure_password
   
   has_many :groups
-  # has_many :locations, through: :groups
+  has_many :locations
 end
