@@ -21,7 +21,7 @@
     [ <%= link_to 'logout', session_path, method: :delete %> ]
   <% else %>
     <%= link_to 'sign up', new_user_path %>
-    <%= link_to 'log in', new_session_path %>
+    <%= link_to 'login', new_session_path %>
   <% end %>
 
   <%= yield %>
