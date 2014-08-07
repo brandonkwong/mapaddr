@@ -27,7 +27,7 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-    if @group.update_attributes(params.require(:group).permit(:name, :description))
+    if @group.update_attributes(params.require(:group).permit(:name, :description, :is_public))
       redirect_to root_path
     else
       render 'edit'
