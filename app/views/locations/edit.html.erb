@@ -3,6 +3,7 @@
     <%= f.text_field :name, placeholder: 'Name' %><br>
     <%= f.text_field :address, placeholder: 'Address' %><br>
     <%= f.text_field :description, placeholder: 'Description' %><br>
+    <%= f.select(:group_id, @group_options) %><br>
       <br>
     <%= f.submit 'Add' %>
   <% end %>

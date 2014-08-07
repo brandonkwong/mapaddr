@@ -15,6 +15,7 @@ class LocationsController < ApplicationController
     if current_user && current_user.id == Group.find(params[:group_id]).user_id
       @group = Group.find(params[:group_id])
       @location = Location.find(params[:id])
+      @group_options = current_user.groups.all.sort_by{ |alpha| alpha.name.downcase }.map{ |g| [ g.name, g.id ] }
     else
       redirect_to new_user_path # build a welcome page
     end
@@ -23,7 +24,7 @@ class LocationsController < ApplicationController
   def update
     @group = Group.find(params[:group_id])
     @location = Location.find(params[:id])
-    if @location.update_attributes(params.require(:location).permit(:name, :address, :description))
+    if @location.update_attributes(params.require(:location).permit(:name, :address, :description, :group_id))
       redirect_to root_path
     else
       # render 'edit'

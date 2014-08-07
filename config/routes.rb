@@ -4,7 +4,7 @@ Mapaddr::Application.routes.draw do
 
   resources :users
 
-  resources :groups, except: :new do # add except :index if changing root
+  resources :groups, except: :new do #shallow: true do # add except :index if changing root
     resources :locations, except: [:index, :new]
   end
 
