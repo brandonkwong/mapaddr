@@ -3,7 +3,6 @@ class GroupsController < ApplicationController
   def index
     @groups = Group.all
     @group = Group.new
-
     @locations = @group.locations
     @location = Location.new
   end
