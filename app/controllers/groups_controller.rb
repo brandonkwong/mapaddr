@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
 
+  # Testing: delete afterwards
   def index
     @groups = Group.all
     @group = Group.new
