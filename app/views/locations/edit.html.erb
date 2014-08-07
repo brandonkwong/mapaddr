@@ -1,13 +1,13 @@
   <h4>Locations +</h4>
-  <%= form_for [@group, @location] do |f| %>
+  <%= form_for @location do |f| %>
     <%= f.text_field :name, placeholder: 'Name' %><br>
     <%= f.text_field :address, placeholder: 'Address' %><br>
     <%= f.text_field :description, placeholder: 'Description' %><br>
     <%= f.select(:group_id, @group_options) %><br>
       <br>
-    <%= f.submit 'Add' %>
+    <%= f.submit 'Edit' %>
   <% end %>
 
     <br>
 
-  <%= link_to 'Delete', group_location_path(@group, @location), method: :delete, data: { confirm: 'Are you sure you want to permanently delete this location?' } %>
+  <%= link_to 'Delete', location_path(@location), method: :delete, data: { confirm: 'Are you sure you want to permanently delete this location?' } %>

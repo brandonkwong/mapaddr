@@ -46,8 +46,8 @@
         <br>
       <em><%= l.description %></em>
         <br>
-      <%= link_to 'Edit', edit_group_location_path(g, l) %> /
-      <%= link_to 'Delete', group_location_path(g, l), method: :delete, data: { confirm: "Permanently delete #{l.name}?" } %>
+      <%= link_to 'Edit', edit_location_path(l) %> /
+      <%= link_to 'Delete', location_path(l), method: :delete, data: { confirm: "Permanently delete #{l.name}?" } %>
     </li>
   <% end %>
   </ul>
