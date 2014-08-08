@@ -1,0 +1,15 @@
+<h1>Account</h1>
+
+<%= form_for @user do |f| %>
+  <%= f.text_field :name, placeholder: 'Name' %><br>
+  <%= f.text_field :email, placeholder: 'Email' %><br>
+  <%= f.password_field :password, placeholder: 'Password' %><br>
+  <%= f.password_field :password_confirmation, placeholder: 'Confirm Password' %><br>
+    <br>
+  <%= f.submit 'Save Changes' %>
+<% end %>
+
+  <br>
+
+<!-- Add TYPE DELETE TO CONFIRM -->
+<%= link_to 'Delete Account', @user, method: :delete, data: { confirm: "Permanently delete this account?" } %>

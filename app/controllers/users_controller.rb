@@ -24,6 +24,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params.require(:user).permit(:name, :email, :password, :password_confirmation))
     if @user.save
+      # Login user after sign up
+      session[:user_id] = @user.id.to_s
+      # Create default group
+      current_user.groups.create(name: 'Uncategorized', description: 'Room to breathe')
       redirect_to root_path
     else
       render 'new'  
@@ -31,7 +35,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    if current_user && current_user.id == User.find(params[:id]).id
+      @user = User.find(params[:id])
+    else
+      redirect_to new_user_path # build a welcome page
+    end
   end
 
   def update
@@ -44,8 +52,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    reset_session
     User.find(params[:id]).destroy
-    redirect_to root_path
+    redirect_to new_user_path # build a welcome page
   end
 
 end

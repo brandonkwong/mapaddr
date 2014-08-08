@@ -12,13 +12,14 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container-fluid">
 
   <h1>MapAddr</h1>
 
   <% if current_user %>
     What up, <%= current_user.name %>!
     [ <%= link_to 'Logout', session_path, method: :delete %> ]
+    [ <%= link_to 'Account', edit_user_path(current_user.id) %> ]
   <% else %>
     <%= link_to 'Sign Up', new_user_path %> /
     <%= link_to 'Login', login_path %>
