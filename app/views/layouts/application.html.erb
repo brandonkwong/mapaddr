@@ -10,11 +10,11 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= params[:controller] %>_controller">
 
 <div class="container-fluid">
 
-<div class="test">
+<div class="navvy">
 
   <h1>MapAddr</h1>
 

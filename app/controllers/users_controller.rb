@@ -15,24 +15,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @groups = @user.groups.all
   end
-  
-  def new
-    @user = User.new
-    @is_signup = true
-  end
-
-  def create
-    @user = User.new(params.require(:user).permit(:name, :email, :password, :password_confirmation))
-    if @user.save
-      # Login user after sign up
-      session[:user_id] = @user.id.to_s
-      # Create default group
-      current_user.groups.create(name: 'Uncategorized', description: 'Room to breathe')
-      redirect_to root_path
-    else
-      render 'new'  
-    end
-  end
 
   def edit
     if current_user && current_user.id == User.find(params[:id]).id

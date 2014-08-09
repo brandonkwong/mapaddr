@@ -9,4 +9,5 @@ class User
   has_secure_password
   
   has_many :groups, :dependent => :destroy
+  has_many :locations
 end

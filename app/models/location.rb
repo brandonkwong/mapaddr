@@ -5,5 +5,5 @@ class Location
   field :description, type: String
 
   belongs_to :group
-  has_and_belongs_to_many :users
+  belongs_to :users
 end

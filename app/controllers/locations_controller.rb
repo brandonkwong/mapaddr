@@ -2,7 +2,7 @@ class LocationsController < ApplicationController
 
   def create
     @group = Group.find(params[:group_id])
-    location = Location.new(params.require(:location).permit(:name, :address, :description))
+    location = current_user.locations.new(params.require(:location).permit(:name, :address, :description))
     location.group = @group
     if location.save
       redirect_to root_path
