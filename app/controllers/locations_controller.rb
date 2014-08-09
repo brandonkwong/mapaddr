@@ -16,7 +16,7 @@ class LocationsController < ApplicationController
       @location = Location.find(params[:id])
       @group_options = current_user.groups.all.sort_by{ |alpha| alpha.name.downcase }.map{ |g| [ g.name, g.id ] }
     else
-      redirect_to new_user_path # build a welcome page
+      redirect_to welcome_path
     end
   end
 

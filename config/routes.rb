@@ -4,6 +4,7 @@ Mapaddr::Application.routes.draw do
   get 'login/' => 'sessions#new'
 
   resources :users
+  get 'welcome/' => 'users#new'
 
   resources :groups, except: :new, shallow: true do # add except :index if changing root
     resources :locations, except: [:index, :new]

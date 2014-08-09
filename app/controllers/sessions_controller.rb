@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
   def destroy
     # Kill all of our cookies
     reset_session
-    redirect_to new_session_path # build a welcome page
+    redirect_to welcome_path
   end
 
 end

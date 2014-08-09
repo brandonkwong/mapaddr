@@ -14,3 +14,49 @@
 
 
 @import 'bootstrap';
+
+body {
+
+  .test {
+    background: pink;
+  }
+
+  .sign-up {
+    margin: 0 auto;
+    text-align: center;
+    width: 20em;
+
+    .form-control {
+      border: .1em solid #cccccc;
+      border-bottom: none;
+      border-top: none;
+      border-radius: 0;
+      color: #555555;
+      font-size: 14px;
+      height: 34px;
+      line-height: 1.428571429;
+      padding: 6px 12px;
+    }
+
+    .form-control:first-child {
+      border-top: .1em solid #cccccc;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+
+    .form-control:nth-child(4) {
+      border-bottom: .1em solid #cccccc;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+
+    .btn-default {
+      color: #333333;
+      background-color: white;
+      border-color: #cccccc;
+      width: 100%;
+    }
+  
+  }
+
+}

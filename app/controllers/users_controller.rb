@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       @locations = @group.locations
       @location = Location.new
     else
-      redirect_to new_user_path # build a welcome page
+      redirect_to welcome_path
     end
   end
 
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     if current_user && current_user.id == User.find(params[:id]).id
       @user = User.find(params[:id])
     else
-      redirect_to new_user_path # build a welcome page
+      redirect_to welcome_path
     end
   end
 
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   def destroy
     reset_session
     User.find(params[:id]).destroy
-    redirect_to new_user_path # build a welcome page
+    redirect_to welcome_path
   end
 
 end

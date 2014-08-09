@@ -1,10 +1,22 @@
-<h1>Sign Up</h1>
+<div class="row">
+  <div class="col-md-12">
 
-<%= form_for @user do |f| %>
-  <%= f.text_field :name, placeholder: 'Name' %><br>
-  <%= f.text_field :email, placeholder: 'Email' %><br>
-  <%= f.password_field :password, placeholder: 'Password' %><br>
-  <%= f.password_field :password_confirmation, placeholder: 'Confirm Password' %><br>
-    <br>
-  <%= f.submit 'Sign Up' %>
-<% end %>
+  <div class="test"> <!-- test -->
+
+    <section class="sign-up">
+      <h1>MapAddr</h1>
+      <%= form_for @user, html: { role: 'form' } do |f| %>
+        <div class="form-group">
+          <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
+          <%= f.text_field :email, placeholder: 'Email', class: 'form-control' %>
+          <%= f.password_field :password, placeholder: 'Password', class: 'form-control' %>
+          <%= f.password_field :password_confirmation, placeholder: 'Confirm Password', class: 'form-control' %>
+        </div>
+        <%= f.submit 'Sign Up', class: 'btn btn-default' %>
+      <% end %>
+    </section>
+
+  </div> <!-- end test -->
+
+  </div>
+</div>
