@@ -13,6 +13,8 @@ $color: #b163a3;
 .welcome_controller {
   background: url(welcome.jpg) no-repeat center center fixed;
   background-size: cover;
+  height: 100%;
+  width: 100%;
 
   .navvy {  // navbar
     display: none;
