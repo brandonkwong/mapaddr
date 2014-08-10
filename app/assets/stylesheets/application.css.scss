@@ -17,10 +17,15 @@ $color: #b163a3;
 
 @import 'bootstrap';
 
-body {
+html {
+  min-height: 100%;
+
+  body {
 
   .test {
     background: pink;
+  }
+
   }
 
 }
