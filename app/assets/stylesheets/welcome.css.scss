@@ -9,12 +9,17 @@ $color: #b163a3;
   transform: translateX($x) translateY($y);
 }
 
+@mixin background-size($cover) {
+  -webkit-background-size: $cover;
+  -moz-background-size: $cover;
+  -o-background-size: $cover;
+  background-size: $cover;
+}
+
 
 .welcome_controller {
   background: url(welcome.jpg) no-repeat center center fixed;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
+  @include background-size(cover);
 
   .navvy {  // navbar
     display: none;
