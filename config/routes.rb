@@ -3,6 +3,7 @@ Mapaddr::Application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   get 'login/' => 'sessions#new'
   get 'welcome/' => 'welcome#new'
+  post 'users/' => 'welcome#create'
 
   resources :users
 
