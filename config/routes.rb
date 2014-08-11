@@ -1,11 +1,10 @@
 Mapaddr::Application.routes.draw do
 
-  resource :session, only: [:new, :create, :destroy]
+  resource :session, only: [:create, :destroy]
   get 'login/' => 'sessions#new'
-  get 'welcome/' => 'welcome#new'
-  post 'users/' => 'welcome#create'
 
-  resources :users
+  resources :users, except: [:new]
+  get 'welcome/' => 'users#new'
 
   resources :groups, except: :new, shallow: true do # add except :index if changing root
     resources :locations, except: [:index, :new]

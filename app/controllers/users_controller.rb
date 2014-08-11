@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :include_navbar, only: [:index, :show, :edit]
+
   def index
     if current_user
       @groups = current_user.groups.all
@@ -14,6 +16,25 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @groups = @user.groups.all
+  end
+
+  def new
+    @user = User.new
+    @is_signup = true
+    @has_navbar = false
+  end
+
+  def create
+    @user = User.new(params.require(:user).permit(:name, :email, :password, :password_confirmation))
+    if @user.save
+      # Login user after sign up
+      session[:user_id] = @user.id.to_s
+      # Create default group
+      current_user.groups.create(name: 'Uncategorized', description: 'Room to breathe')
+      redirect_to root_path
+    else
+      redirect_to welcome_path
+    end
   end
 
   def edit
@@ -37,6 +58,10 @@ class UsersController < ApplicationController
     reset_session
     User.find(params[:id]).destroy
     redirect_to welcome_path
+  end
+
+  def include_navbar
+    @has_navbar = true
   end
 
 end
