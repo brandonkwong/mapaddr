@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       # Login user after sign up
       session[:user_id] = @user.id.to_s
       # Create default group
-      current_user.groups.create(name: 'Uncategorized', description: 'Room to breathe')
+      current_user.groups.create(name: 'Ungrouped', description: 'Room to breathe')
       redirect_to root_path
     else
       redirect_to welcome_path
