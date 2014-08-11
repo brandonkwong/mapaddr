@@ -12,19 +12,25 @@
  *= require_tree .
  */
 
+// Bootstrap
+@import 'bootstrap';
+
 // Variables
 $color: #b163a3;
 
-@import 'bootstrap';
-
+// HTML
 html {
   min-height: 100%;
 
+  // Body
   body {
+
+    // TEST TO BE REMOVED LATER
     .test {
       background: pink;
     }
 
+    // Login Modal Trigger
     .login-link {
       margin-top: 2.5em;
 
@@ -42,5 +48,8 @@ html {
         text-decoration: none;
       }
     }
+
+
+    
   }
 }
