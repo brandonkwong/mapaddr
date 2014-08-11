@@ -1,5 +1,7 @@
 class GroupsController < ApplicationController
 
+  before_action :header, only: [:index, :edit]
+
   # Testing: delete afterwards
   def index
     @groups = Group.all
@@ -37,6 +39,12 @@ class GroupsController < ApplicationController
   def destroy
     Group.find(params[:id]).destroy
     redirect_to root_path
+  end
+
+  def header
+    @has_navbar = true
+    @user_login = User.new
+    @is_login = true
   end
 
 end

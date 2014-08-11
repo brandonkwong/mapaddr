@@ -12,6 +12,29 @@
 </head>
 <body class="container-fluid <%= params[:controller] %>_controller">
 
+  <!-- Login (Modal) -->
+  <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="myModalLabel">MapAddr</h4>
+        </div>
+        <div class="modal-body">
+
+          <%= form_for @user_login, { url: session_path } do |f| %>
+            <%= f.text_field :email, placeholder: 'Email', class: 'form-control' %>
+            <%= f.password_field :password, placeholder: 'Password', class: 'form-control' %>
+              <br>
+            <%= f.submit 'Login', class: 'btn btn-primary' %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
   <% if @has_navbar %>
     <div class="navvy">
 
@@ -23,7 +46,7 @@
         [ <%= link_to 'Account', edit_user_path(current_user.id) %> ]
       <% else %>
         <%= link_to 'Sign Up', welcome_path %> /
-        <%= link_to 'Login', login_path %>
+        <p><a data-toggle="modal" data-target="#login">Login</a></p>
       <% end %>
 
     </div>

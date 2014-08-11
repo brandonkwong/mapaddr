@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :include_navbar, only: [:index, :show, :edit]
+  before_action :header, only: [:index, :show, :new, :edit]
 
   def index
     if current_user
@@ -60,8 +60,10 @@ class UsersController < ApplicationController
     redirect_to welcome_path
   end
 
-  def include_navbar
+  def header
     @has_navbar = true
+    @user_login = User.new
+    @is_login = true
   end
 
 end

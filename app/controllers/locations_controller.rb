@@ -1,5 +1,7 @@
 class LocationsController < ApplicationController
 
+  before_action :header, only: :edit
+
   def create
     @group = Group.find(params[:group_id])
     location = current_user.locations.new(params.require(:location).permit(:name, :address, :description))
@@ -32,6 +34,12 @@ class LocationsController < ApplicationController
   def destroy
     Location.find(params[:id]).destroy
     redirect_to root_path
+  end
+
+  def header
+    @has_navbar = true
+    @user_login = User.new
+    @is_login = true
   end
 
 end

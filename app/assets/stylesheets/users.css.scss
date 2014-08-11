@@ -2,11 +2,15 @@
 $color: #b163a3;
 
 // Mixins
-@mixin transform-translate($x, $y) {
-  -webkit-transform: translateX($x) translateY($y);
-  -moz-transform: translateX($x) translateY($y);
-  -ms-transform: translateX($x) translateY($y);
-  transform: translateX($x) translateY($y);
+@mixin translate-center($x, $y) {
+  left: $x;
+  position: fixed;
+  top: $y;
+  -webkit-transform: translateX(-$x) translateY(-$y);
+  -moz-transform: translateX(-$x) translateY(-$y);
+  -ms-transform: translateX(-$x) translateY(-$y);
+  transform: translateX(-$x) translateY(-$y);
+  width: $x;
 }
 
 @mixin background-size($cover) {
@@ -26,19 +30,14 @@ $color: #b163a3;
     @include background-size(cover);
     height: 100%;
     width: 100%;
-    display: block;
     position: fixed;
 
-      .sign-up {
+    .sign-up {
       color: #fff;
-      left: 50%;
       max-width: 20em;
       min-width: 20em;
-      position: fixed;
       text-align: center;
-      top: 40%;
-      @include transform-translate(-50%, -40%);
-      width: 50%;
+      @include translate-center(50%, 40%);
 
       h1 {
         font-size: 4.25em;
@@ -99,27 +98,6 @@ $color: #b163a3;
       .btn-default:focus {
         outline: none;
       }
-
-      .login-link {
-        margin-top: 2.5em;
-
-        p {
-          margin-bottom: 0;
-        }
-
-        a {
-          color: $color;
-          cursor: pointer;
-        }
-
-        a:hover {
-          color: darken($color, 10%);
-          text-decoration: none;
-        }
-      }
-    
     }
-
   }
-
 }

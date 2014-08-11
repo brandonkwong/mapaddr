@@ -21,11 +21,26 @@ html {
   min-height: 100%;
 
   body {
+    .test {
+      background: pink;
+    }
 
-  .test {
-    background: pink;
+    .login-link {
+      margin-top: 2.5em;
+
+      p {
+        margin-bottom: 0;
+      }
+
+      a {
+        color: $color;
+        cursor: pointer;
+      }
+
+      a:hover {
+        color: darken($color, 10%);
+        text-decoration: none;
+      }
+    }
   }
-
-  }
-
 }
