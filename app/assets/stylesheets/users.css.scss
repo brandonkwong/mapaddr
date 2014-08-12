@@ -22,7 +22,6 @@ $color: #b163a3;
 
 // Body
 .users_controller {
-  padding: 0;
 
   // Welcome & Sign Up
   .welcome {
@@ -30,6 +29,7 @@ $color: #b163a3;
     @include background-size(cover);
     height: 100%;
     width: 100%;
+    margin: 0 -15px;
     position: fixed;
 
     .sign-up {

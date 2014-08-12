@@ -8,6 +8,7 @@ gem 'mongoid', github: 'mongoid/mongoid'
 
 # Use Twitter Bootstrap
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'font-awesome-sass'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
