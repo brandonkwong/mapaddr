@@ -14,7 +14,7 @@ class LocationsController < ApplicationController
   end
 
   def edit
-    if current_user && current_user.id == Location.find(params[:id]).group.user_id
+    if current_user == Location.find(params[:id]).group.user
       @location = Location.find(params[:id])
       @group_options = current_user.groups.all.sort_by{ |alpha| alpha.name.downcase }.map{ |g| [ g.name, g.id ] }
     else
