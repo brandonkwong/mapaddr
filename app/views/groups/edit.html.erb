@@ -3,10 +3,13 @@
 <%= form_for @group do |f| %>
   <%= f.text_field :name, placeholder: 'Name' %><br>
   <%= f.text_field :description, placeholder: 'Description' %><br>
-  <%= f.label :is_public, 'Public', :value => 'true' %>
+
+  <%= f.label :is_public, 'Public' %>
   <%= f.radio_button :is_public, true %>
-  <%= f.label :is_public, 'Private', :value => 'false' %>
+
+  <%= f.label :is_public, 'Private' %>
   <%= f.radio_button :is_public, false %>
+
     <br>
   <%= f.submit 'Edit' %>
 <% end %>

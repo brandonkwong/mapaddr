@@ -33,7 +33,7 @@ class UsersController < ApplicationController
       current_user.groups.create(name: 'Ungrouped', description: 'Room to breathe')
       redirect_to root_path
     else
-      redirect_to welcome_path
+      redirect_to :back
     end
   end
 
