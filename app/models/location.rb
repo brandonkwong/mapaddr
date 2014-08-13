@@ -7,6 +7,9 @@ class Location
   field :latitude, type: String
   field :longitude, type: String
 
+  validates :name, presence: true
+  validates :address, presence: true
+
   belongs_to :group
   belongs_to :user
 end

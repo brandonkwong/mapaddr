@@ -32,10 +32,17 @@ $color: #b163a3;
 
   }
 
+  
+
   .map {
     height: 600px;
     padding: 15px;
 
+    #map-canvas {
+      height: 100%
+    }
+
+    // DELETE AFTER TESTING
     .test {
       background: gray;
       width: 100%;
