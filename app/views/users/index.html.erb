@@ -3,7 +3,7 @@
 
 <!-- Add Group Form -->
 <div>
-  <h2><%= current_user.name %>'s Dashboard</h2>
+  <h2><%= current_user.name %>'s Map</h2>
   <h3>Groups +</h3>
   <%= render 'partials/f.group' %>
 </div>
@@ -36,19 +36,21 @@
           <h4>Locations +</h4>
           <%= form_for [g, @location] do |f| %>
             <%= f.text_field :name, placeholder: 'Name' %><br>
-            <%= f.text_field :address, placeholder: 'Address' %><br>
+            <%= f.text_field :address, placeholder: 'Address', :'data-ng-model' => 'test' %><br>
             <%= f.text_field :description, placeholder: 'Description' %><br>
               <br>
             <%= f.submit 'Add' %>
           <% end %>
 
           <!-- Display Group Locations -->
-          <ul class="locations">
+          <ul>
             <% g.locations.sort_by{ |alpha| alpha.name.downcase }.each do |l| %>
               <li>
-                <h4><%= l.name %></h4>
-                <%= l.address %><br>
-                <em><%= l.description %></em><br>
+                <section class="location" data-ng-click="codeAddress('<%= l.address %>')">
+                  <h4><%= l.name %></h4>
+                  <p><%= l.address %></p>
+                  <p><em><%= l.description %></em></p>
+                </section>
                 <%= link_to 'Edit', edit_location_path(l) %> /
                 <%= link_to 'Delete', l, method: :delete, data: { confirm: "Permanently delete #{l.name}?" } %>
               </li>
