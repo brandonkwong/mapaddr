@@ -8,12 +8,14 @@ class UsersController < ApplicationController
       @group = current_user.groups.new
       @locations = @group.locations
       @location = Location.new
+      @form_btn = 'Add'
     else
       redirect_to welcome_path
     end
   end
 
   def show
+    # Alternative: @user = User.find_by(username: params[:id])
     @user = User.find(params[:id])
     @groups = @user.groups.all
   end
@@ -25,12 +27,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params.require(:user).permit(:name, :email, :password, :password_confirmation))
+    @user = User.new(user_params)
     if @user.save
       # Login user after sign up
       session[:user_id] = @user.id.to_s
       # Create default group
-      current_user.groups.create(name: 'Ungrouped', description: 'Room to breathe')
+      current_user.groups.create(name: 'Uncategorized', description: 'Room to breathe')
       redirect_to root_path
     else
       redirect_to :back
@@ -47,7 +49,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(params.require(:user).permit(:name, :email, :password, :password_confirmation))
+    if @user.update_attributes(user_params)
       redirect_to root_path
     else
       render 'edit'
@@ -60,10 +62,10 @@ class UsersController < ApplicationController
     redirect_to welcome_path
   end
 
-  def header
-    @has_navbar = true
-    @user_login = User.new
-    @is_login = true
+private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
 end

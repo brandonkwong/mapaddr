@@ -7,8 +7,9 @@ class User
   field :password_digest, type: String
 
   validates :name, presence: true
-  validates :email, presence: true
-  validates_uniqueness_of :email
+  validates :email, presence: true,
+            format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
+            uniqueness: { case_sensitive: false }
 
   has_secure_password
   
