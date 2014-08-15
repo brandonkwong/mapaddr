@@ -11,8 +11,6 @@ private
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  helper_method :header
-
   def header
     @has_navbar = true
     @user_login = User.new

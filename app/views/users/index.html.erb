@@ -1,14 +1,7 @@
 <div class="row">
 <div class="dashboard col-md-3">
 
-<!-- Add Group Form -->
-<div>
-  <h2><%= current_user.name %>'s Map</h2>
-  <h3>Groups +</h3>
-  <%= render 'partials/f.group' %>
-</div>
-  
-  <br>
+<br>
 
 <!-- Display Groups List -->
 <div class="panel-group" id="accordion">
@@ -21,9 +14,9 @@
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#<%= g.id %>">
             <h3><%= g.name %></h3>
+            <h4><em><%= g.description %></em></h4>
           </a>
         </h4>
-        <h4><em><%= g.description %></em></h4>
         <%= link_to 'Edit', edit_group_path(g) %> /
         <%= link_to 'Delete', g, method: :delete, data: { confirm: "Permanently delete #{g.name}?" } %>
       </div>
@@ -39,6 +32,9 @@
             <%= f.text_field :address, placeholder: 'Address', :'data-ng-model' => 'test' %><br>
             <%= f.text_field :description, placeholder: 'Description' %><br>
               <br>
+
+              <button type="button" data-ng-click="currentLocation()">CL</button>
+
             <%= f.submit 'Add' %>
           <% end %>
 
@@ -48,7 +44,6 @@
               <li>
                 <section class="location" data-ng-click="codeAddress('<%= l.address %>')">
                   <h4><%= l.name %></h4>
-                  <p><%= l.address %></p>
                   <p><em><%= l.description %></em></p>
                 </section>
                 <%= link_to 'Edit', edit_location_path(l) %> /
@@ -63,33 +58,30 @@
   <% end %>
 </div> <!-- end panel-group -->
 
+
+<!-- Add Group Form -->
+<div>
+  <h3>Groups +</h3>
+  <%= render 'partials/f.group' %>
+</div>
+
+
 </div> <!-- end dashboard-->
 
 
 
 
 
-
-<div class="map col-md-9">
-  <!-- Map -->
+<!-- Map -->
+<div class="map col-md-9 col-md-offset-3">
   <div id="map-canvas"></div>
-
-
-  
-
-
-
-</div> <!-- end map col -->
+</div>
 
 
 
 
 
 </div> <!-- end row -->
-
-
-
-
 
 
 

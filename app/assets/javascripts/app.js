@@ -6,6 +6,14 @@ mapAddr.controller('MapAddrController', ['$scope', function($scope) {
   var map;
   var marker;
 
+  // Map Options
+  var mapOptions = {
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    // scrollwheel: false,
+    styles: stylized,
+    zoom: 17
+  };
+
   // Geolocation
   var initialLocation;
   var siberia = new google.maps.LatLng(60, 105);
@@ -15,6 +23,10 @@ mapAddr.controller('MapAddrController', ['$scope', function($scope) {
   // Geocoder
   var geocoder;
   var infowindow = new google.maps.InfoWindow();
+
+  // // Directions
+  // var directionsDisplay;
+  // var directionsService = new google.maps.DirectionsService();
 
 
   // Google Maps Initialize
@@ -47,13 +59,7 @@ mapAddr.controller('MapAddrController', ['$scope', function($scope) {
     //   }
     // ];
 
-    // Map Options
-    var mapOptions = {
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      scrollwheel: false,
-      styles: stylized,
-      zoom: 17
-    };
+    
 
     // Map-Canvas Id
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
@@ -64,39 +70,64 @@ mapAddr.controller('MapAddrController', ['$scope', function($scope) {
       navigator.geolocation.getCurrentPosition(function(position) {
         initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 
+        $scope.test = initialLocation;
 
-        // Reverse Geocoding (Current Location)     
-        geocoder.geocode({'latLng': initialLocation}, function(results, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-            if (results[1]) {
-              // marker = new google.maps.Marker({
-              //     position: latlng,
-              //     map: map
-              // });
 
-              // infowindow.setContent(results[1].formatted_address);
+        // Reverse Geocoding (Current Location)
+        // $scope.currentLocation = function() {
+        //   geocoder.geocode({'latLng': initialLocation}, function(results, status) {
+        //     if (status == google.maps.GeocoderStatus.OK) {
+        //       if (results[1]) {
+        //         // marker = new google.maps.Marker({
+        //         //     position: latlng,
+        //         //     map: map
+        //         // });
 
-              $scope.test = results[1].formatted_address;
+        //         // infowindow.setContent(results[1].formatted_address);
 
-              // infowindow.open(map, marker);
+        //         $scope.test = results[1].formatted_address;
 
-            }
-          } else {
-            alert("Geocoder failed due to: " + status);
-          }
-        });
+
+        //         // infowindow.open(map, marker);
+
+        //       }
+        //     } else {
+        //       alert("Geocoder failed due to: " + status);
+        //     }
+        //   });
+
+
+        // };
 
 
         // Marker for Current Location
         // var image = 'image.png';
-        var marker = new google.maps.Marker({
+
+
+
+        var geoMarker = new google.maps.Marker({
           map: map,
           position: initialLocation,
           title: 'Current Location'
-          // icon: image
         });
-        infowindow.setContent('Current Location');
-        infowindow.open(map, marker);
+
+        var circle = {
+          strokeColor: '#b163a3',
+          strokeOpacity: 0,
+          strokeWeight: 0,
+          fillColor: '#b163a3',
+          fillOpacity: 0.15,
+          map: map,
+          center: initialLocation,
+          radius: 200
+        };
+        // Add the circle for this city to the map.
+        geoCircle = new google.maps.Circle(circle);
+
+
+
+        infowindow.setContent('What up!');
+        infowindow.open(map, geoMarker);
 
 
         map.setCenter(initialLocation);
@@ -121,6 +152,13 @@ mapAddr.controller('MapAddrController', ['$scope', function($scope) {
       map.setCenter(initialLocation);
     }
 
+    // directionsDisplay = new google.maps.DirectionsRenderer();
+
+
+
+
+
+
   }();
 
 
@@ -142,6 +180,26 @@ mapAddr.controller('MapAddrController', ['$scope', function($scope) {
     });
 
   };
+
+
+
+  // // Directions
+  // function calcRoute() {
+  //   var start = document.getElementById("start").value;
+  //   var end = document.getElementById("end").value;
+  //   var request = {
+  //     origin:start,
+  //     destination:end,
+  //     travelMode: google.maps.TravelMode.DRIVING
+  //   };
+  //   directionsService.route(request, function(result, status) {
+  //     if (status == google.maps.DirectionsStatus.OK) {
+  //       directionsDisplay.setDirections(result);
+  //     }
+  //   });
+  // }
+
+
 
 
 }]);
