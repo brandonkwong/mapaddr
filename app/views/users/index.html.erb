@@ -31,7 +31,7 @@
               <%= f.text_field :description, placeholder: 'Description' %><br>
                 <br>
 
-                <button type="button" data-ng-click="currentLocation()">CL</button>
+                <button type="button" data-ng-click="currentLocation()"><i class="fa fa-crosshairs"></i></button>
 
               <%= f.submit 'Add' %>
             <% end %>
@@ -40,9 +40,9 @@
             <ul>
               <% g.locations.sort_by{ |alpha| alpha.name.downcase }.each do |l| %>
                 <li>
-                  <section class="location" data-ng-click="codeAddress('<%= l.address %>')">
-                    <h4><%= l.name %></h4>
-                    <p><em><%= l.description %></em></p>
+                  <section class="location" data-ng-init="codeAddress('<%= l.address %>')" data-ng-click="takeMe('<%= l.address %>')">
+                    <h4 class="name"><%= l.name %></h4>
+                    <p class="desc"><em><%= l.description %></em></p>
                   </section>
                   <%= link_to 'Edit', edit_location_path(l) %> /
                   <%= link_to 'Delete', l, method: :delete, data: { confirm: "Permanently delete #{l.name}?" } %>
