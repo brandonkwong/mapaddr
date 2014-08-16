@@ -1,21 +1,14 @@
 class GroupsController < ApplicationController
 
-  before_action :header, only: [:index, :edit]
-
-  # Testing: delete afterwards
-  def index
-    @groups = Group.all
-    @group = Group.new
-    @locations = @group.locations
-    @location = Location.new
-  end
+  before_action :header, only: [:index, :create, :edit]
+  before_action :render_signup, only: :create
 
   def create
     @group = current_user.groups.new(group_params)
     if @group.save
       redirect_to root_path
     else
-      redirect_to root_path # change for errors
+      render 'users/index'
     end
   end
 

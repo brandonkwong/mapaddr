@@ -17,4 +17,9 @@ private
     @is_login = true
   end
 
+  def render_signup
+    @groups = current_user.groups.all
+    @location = Location.new
+  end
+
 end

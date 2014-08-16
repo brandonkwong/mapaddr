@@ -1,15 +1,16 @@
 class LocationsController < ApplicationController
 
-  before_action :header, only: :edit
+  before_action :header, only: [:edit, :create]
+  before_action :render_signup, only: :create
 
   def create
     @group = Group.find(params[:group_id])
-    location = current_user.locations.new(location_params)
-    location.group = @group
-    if location.save
+    @location = current_user.locations.new(location_params)
+    @location.group = @group
+    if @location.save
       redirect_to root_path
     else
-      # render 'new'
+      render 'users/index'
     end
   end
 

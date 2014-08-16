@@ -11,6 +11,7 @@ mapAddr.controller('MapAddrController', ['$scope', function($scope) {
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     // scrollwheel: false,
     styles: stylized,
+    minZoom: 3,
     zoom: 17
   };
 
@@ -59,7 +60,6 @@ mapAddr.controller('MapAddrController', ['$scope', function($scope) {
     //   }
     // ];
 
-    
 
     // Map-Canvas Id
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
@@ -70,47 +70,19 @@ mapAddr.controller('MapAddrController', ['$scope', function($scope) {
       navigator.geolocation.getCurrentPosition(function(position) {
         initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 
-        $scope.test = initialLocation;
+        // Add Current Location Function
+        $scope.currentLocation = function() {
+          $scope.geoLoc = initialLocation;
+        }
 
-
-        // Reverse Geocoding (Current Location)
-        // $scope.currentLocation = function() {
-        //   geocoder.geocode({'latLng': initialLocation}, function(results, status) {
-        //     if (status == google.maps.GeocoderStatus.OK) {
-        //       if (results[1]) {
-        //         // marker = new google.maps.Marker({
-        //         //     position: latlng,
-        //         //     map: map
-        //         // });
-
-        //         // infowindow.setContent(results[1].formatted_address);
-
-        //         $scope.test = results[1].formatted_address;
-
-
-        //         // infowindow.open(map, marker);
-
-        //       }
-        //     } else {
-        //       alert("Geocoder failed due to: " + status);
-        //     }
-        //   });
-
-
-        // };
-
-
-        // Marker for Current Location
-        // var image = 'image.png';
-
-
-
+        // Current Location Marker
         var geoMarker = new google.maps.Marker({
           map: map,
           position: initialLocation,
           title: 'Current Location'
         });
 
+        // Current Location Radius
         var circle = {
           strokeColor: '#b163a3',
           strokeOpacity: 0,
@@ -121,16 +93,14 @@ mapAddr.controller('MapAddrController', ['$scope', function($scope) {
           center: initialLocation,
           radius: 200
         };
-        // Add the circle for this city to the map.
         geoCircle = new google.maps.Circle(circle);
 
-
-
+        // Current Location Info Window
         infowindow.setContent('What up!');
         infowindow.open(map, geoMarker);
 
-
         map.setCenter(initialLocation);
+
       }, function() {
         handleNoGeolocation(browserSupportFlag);
       });
@@ -154,13 +124,7 @@ mapAddr.controller('MapAddrController', ['$scope', function($scope) {
 
     // directionsDisplay = new google.maps.DirectionsRenderer();
 
-
-
-
-
-
   }();
-
 
 
   // Geocoding Address
@@ -182,7 +146,6 @@ mapAddr.controller('MapAddrController', ['$scope', function($scope) {
   };
 
 
-
   // // Directions
   // function calcRoute() {
   //   var start = document.getElementById("start").value;
@@ -198,8 +161,6 @@ mapAddr.controller('MapAddrController', ['$scope', function($scope) {
   //     }
   //   });
   // }
-
-
 
 
 }]);

@@ -1,3 +1,44 @@
-// Place all the styles related to the Locations controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// Mixins
+@mixin translate-center($x, $y) {
+  left: $x;
+  position: fixed;
+  top: $y;
+  -webkit-transform: translateX(-$x) translateY(-$y);
+  -moz-transform: translateX(-$x) translateY(-$y);
+  -ms-transform: translateX(-$x) translateY(-$y);
+  transform: translateX(-$x) translateY(-$y);
+}
+
+// Body
+.locations_controller {
+
+  // Dashbaord
+  .dashboard {
+    background: gray;
+    height: 100%;
+    overflow-y: auto;
+    position: fixed;
+    padding-bottom: 100px;
+
+    .location {
+      cursor: pointer;
+    }
+  }
+
+  // Google Map
+  .map {
+    height: 100%;
+    padding: 0;
+    position: fixed;
+
+    #map-canvas {
+      height: 100%;
+    }
+  }
+
+  // Alert Errors
+  .alert {
+    @include translate-center(50%, 10%);
+    width: 22em;
+  }
+}

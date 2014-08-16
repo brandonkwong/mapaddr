@@ -3,15 +3,15 @@
 
   <!-- Sign Up -->
   <section class="sign-up">
-  
+
     <h1>MapAddr</h1>
     <p>Group and share your locations.</p>
     <%= form_for @user, html: { role: 'form' } do |f| %>
       <div class="form-group">
-        <%= f.text_field :name, placeholder: 'Name', class: 'form-control' %>
+        <%= f.text_field :name, placeholder: 'Name', class: 'form-control', autofocus: true %>
         <%= f.text_field :email, placeholder: 'Email', class: 'form-control' %>
         <%= f.password_field :password, placeholder: 'Password', class: 'form-control' %>
-        <%= f.password_field :password_confirmation, placeholder: 'Confirm Password', class: 'form-control' %>
+        <%= f.password_field :password_confirmation, placeholder: 'Retype Password', class: 'form-control' %>
       </div>
       <%= f.submit 'SIGN UP', class: 'btn btn-default' %>
     <% end %>
@@ -25,3 +25,14 @@
   </section>
 
 </div>
+
+<!-- Alert Errors -->
+<% if @user.errors.any? %>
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4>Oops, wrong way!</h4>
+    <% @user.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+  </div>
+<% end %>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :header, only: [:index, :show, :new, :edit]
+  before_action :header, except: [:update, :destroy]
 
   def index
     if current_user
@@ -9,6 +9,7 @@ class UsersController < ApplicationController
       @locations = @group.locations
       @location = Location.new
       @form_btn = 'Add'
+      # render_location
     else
       redirect_to welcome_path
     end
@@ -21,12 +22,13 @@ class UsersController < ApplicationController
   end
 
   def new
+    @has_navbar = false
     @user = User.new
     @is_signup = true
-    @has_navbar = false
   end
 
   def create
+    @has_navbar = false
     @user = User.new(user_params)
     if @user.save
       # Login user after sign up
@@ -35,7 +37,7 @@ class UsersController < ApplicationController
       current_user.groups.create(name: 'Uncategorized', description: 'Room to breathe')
       redirect_to root_path
     else
-      redirect_to :back
+      render 'new'
     end
   end
 
