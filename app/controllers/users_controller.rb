@@ -35,7 +35,7 @@ class UsersController < ApplicationController
       # Login user after signup
       session[:user_id] = @user.id.to_s
       # Create default uncategorized group on signup
-      current_user.groups.create(name: 'Uncategorized', description: 'Room to breathe')
+      current_user.groups.create(name: 'Uncategorized', description: 'Room to breathe', is_public: false)
       redirect_to root_path
     else
       render 'new'
