@@ -22,7 +22,7 @@
           </h4>
 
           <!-- Add Group Location Form -->
-          <span class="location"><i class="fa fa-map-marker" data-toggle="modal" data-target="#location-<%= g.id %>"></i> New </span> /
+          <span class="location" data-toggle="modal" data-target="#location-<%= g.id %>"><i class="fa fa-map-marker"></i> New</span> /
 
           <%= link_to 'Edit', edit_group_path(g) %> /
           <%= link_to 'Delete', g, method: :delete, data: { confirm: "Permanently delete #{g.name}?" } %>
@@ -54,7 +54,7 @@
 
   <!-- Map -->
   <div class="map col-md-10 col-md-offset-2">
-    <div id="directionsPanel"></div>
+    <div id="directionsPanel" style="float:right;width:30%;height 100%"></div>
     <div id="map-canvas"></div>
   </div>
 
