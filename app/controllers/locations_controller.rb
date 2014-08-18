@@ -4,6 +4,7 @@ class LocationsController < ApplicationController
   before_action :render_signup, only: :create
 
   def create
+    # Attach group id to new location
     @group = Group.find(params[:group_id])
     @location = current_user.locations.new(location_params)
     @location.group = @group

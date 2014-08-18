@@ -28,12 +28,13 @@ class UsersController < ApplicationController
   end
 
   def create
+    # Variable for processing signup errors in render new
     @has_navbar = false
     @user = User.new(user_params)
     if @user.save
-      # Login user after sign up
+      # Login user after signup
       session[:user_id] = @user.id.to_s
-      # Create default group
+      # Create default uncategorized group on signup
       current_user.groups.create(name: 'Uncategorized', description: 'Room to breathe')
       redirect_to root_path
     else
@@ -59,6 +60,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    # Logout user before deleting account
     reset_session
     User.find(params[:id]).destroy
     redirect_to welcome_path

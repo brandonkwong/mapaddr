@@ -17,9 +17,13 @@
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#<%= g.id %>">
               <h3><%= g.name %></h3>
-              <h4><em><%= g.description %></em></h4>
+              <p><%= g.description %></p>
             </a>
           </h4>
+
+          <!-- Add Group Location Form -->
+          <span class="location"><i class="fa fa-map-marker" data-toggle="modal" data-target="#location-<%= g.id %>"></i> New </span> /
+
           <%= link_to 'Edit', edit_group_path(g) %> /
           <%= link_to 'Delete', g, method: :delete, data: { confirm: "Permanently delete #{g.name}?" } %>
         </div>
@@ -28,22 +32,17 @@
         <div id="<%= g.id %>" class="panel-collapse collapse in">
           <div class="panel-body">
 
-            <!-- Add Group Location Form -->
-            <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#location-<%= g.id %>"><i class="fa fa-map-marker"></i>&nbsp; New Location</button>
-
             <!-- Display Group Locations -->
-            <ul>
             <% g.locations.sort_by{ |alpha| alpha.name.downcase }.each do |l| %>
-              <li>
-                <section class="location" data-ng-init="codeAddress('<%= l.address %>', '<%= l.name %>')" data-ng-click="takeMe('<%= l.address %>', '<%= l.name %>')">
-                  <h4 class="name"><%= l.name %></h4>
-                  <p class="desc"><em><%= l.description %></em></p>
-                </section>
+              <section class="location" data-ng-init="codeAddress('<%= l.address %>', '<%= l.name %>')" data-ng-click="calcRoute('<%= l.address %>', '<%= l.name %>')">
+                <p class="name"><strong><%= l.name %></strong></p>
+                <p class="desc"><em><%= l.description %></em></p>
+              </section>
+              <section class="meta-location">
                 <%= link_to 'Edit', edit_location_path(l) %> /
                 <%= link_to 'Delete', l, method: :delete, data: { confirm: "Permanently delete #{l.name}?" } %>
-              </li>
+              </section>
             <% end %>
-            </ul>
 
           </div> <!-- end panel-body -->
         </div> <!-- end panel-collapse -->
@@ -55,6 +54,7 @@
 
   <!-- Map -->
   <div class="map col-md-10 col-md-offset-2">
+    <div id="directionsPanel"></div>
     <div id="map-canvas"></div>
   </div>
 
