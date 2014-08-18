@@ -1,0 +1,39 @@
+<div class="modal fade" id="group" tabindex="-1" role="dialog" aria-labelledby="label-group" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="label-group">Create a group</h4>
+      </div>
+      <div class="modal-body">
+
+        <%= form_for @group do |f| %>
+          <div class="form-group">
+            <%= f.text_field :name, placeholder: 'Name', id: 'focus-login', class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_field :description, placeholder: 'Description', class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :is_public, 'Public' %>
+            <%= f.radio_button :is_public, true %>
+              &nbsp;
+            <%= f.label :is_public, 'Private' %>
+            <%= f.radio_button :is_public, false %>
+          </div>
+
+          <%= f.submit @form_btn, class: 'btn btn-primary' %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#group').on('shown.bs.modal', function () {
+    $('#focus-group').focus();
+  });
+</script>

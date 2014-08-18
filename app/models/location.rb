@@ -4,7 +4,7 @@ class Location
   field :address, type: String
   field :description, type: String
 
-  validates :name, presence: true
+  validates :name, presence: true  
   validates :address, presence: true
 
   belongs_to :group

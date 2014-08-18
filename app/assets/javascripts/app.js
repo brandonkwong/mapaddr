@@ -4,10 +4,9 @@ mapAddr.controller('MapAddrController', ['$scope', function($scope) {
 
   // Map
   var map;
-
-  // Map Options
   var mapOptions = {
     mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeControl: false,
     styles: stylized,
     minZoom: 3,
     zoom: 17
@@ -40,36 +39,48 @@ mapAddr.controller('MapAddrController', ['$scope', function($scope) {
       navigator.geolocation.getCurrentPosition(function(position) {
         initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 
-        // Add Current Location Function
-        $scope.currentLocation = function() {
-          $scope.geoLoc = initialLocation;
-        }
-
-        // Current Location Marker
-        var geoMarker = new google.maps.Marker({
-          map: map,
-          position: initialLocation,
-          title: 'Current Location'
-        });
-
         // Current Location Radius
-        var circle = {
-          strokeColor: '#b163a3',
-          strokeOpacity: 0,
-          strokeWeight: 0,
+        var geoCircle = new google.maps.Circle({
           fillColor: '#b163a3',
           fillOpacity: 0.15,
+          strokeColor: 'none',
+          strokeOpacity: 0,
+          strokeWeight: 0,
           map: map,
           center: initialLocation,
           radius: 250
-        };
-        geoCircle = new google.maps.Circle(circle);
+        });
+
+        // Current Location Marker
+        $scope.geoMarker = new google.maps.Marker({
+          map: map,
+          position: initialLocation,
+          title: 'Current Location',
+          icon: {
+            anchor: new google.maps.Point(30, -30),
+            fillColor: '#b163a3',
+            fillOpacity: 1,
+            path: fontawesome.markers.USER,
+            scale: 0.65,
+            strokeColor: 'none',
+            strokeOpacity: 0,
+            strokeWeight: 0
+          }
+        });
 
         // Current Location Info Window
-        infowindow.setContent('What up!');
-        infowindow.open(map, geoMarker);
+        infowindow.open(map, $scope.geoMarker);
+        infowindow.setContent('<h4>What up!</h4>');
 
+        // Current Location Info Window on Click
+        google.maps.event.addListener($scope.geoMarker, 'click', function() {
+          infowindow.open(map, $scope.geoMarker);
+          infowindow.setContent('<h4>What up!</h4>');
+        });
+
+        // Map Center
         map.setCenter(initialLocation);
+        map.panBy(0, 30);
 
       }, function() {
         handleNoGeolocation(browserSupportFlag);
@@ -90,43 +101,115 @@ mapAddr.controller('MapAddrController', ['$scope', function($scope) {
         initialLocation = siberia;
       }
       map.setCenter(initialLocation);
+      map.panBy(0, 30);
     }
 
     // directionsDisplay = new google.maps.DirectionsRenderer();
 
 
-
   }();
 
+  // Go to Current Location Button
+  $scope.locateMe = function() {
+    geocoder.geocode({'address': String(initialLocation)}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
 
+        // Center and Zoom in on Current Location
+        map.setCenter(results[0].geometry.location);
+        map.setZoom(17);
+        map.panBy(0, 30);
 
+        // Current Location Info Window
+        infowindow.open(map, $scope.geoMarker);
+        infowindow.setContent('<h4>Such a beautiful day!</h4>');
+
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  };
+
+  // Go to Location on Click
+  $scope.takeMe = function(address, name) {
+    geocoder.geocode({'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+
+        // Center and Zoom in on Location
+        map.setCenter(results[0].geometry.location);
+        map.setZoom(17);
+        map.panBy(0, 30);
+
+        // Create Marker for on Click
+        var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location,
+          icon: {
+            anchor: new google.maps.Point(20, -30),
+            fillColor: '#b163a3',
+            fillOpacity: 1,
+            path: fontawesome.markers.MAP_MARKER,
+            scale: 0.65,
+            strokeColor: 'none',
+            strokeOpacity: 0,
+            strokeWeight: 0
+          }
+        });
+
+        // Location Info Window
+        infowindow.open(map, marker);
+        infowindow.setContent(
+          '<h4>' + name + '</h4>' +
+          '<p class="addr-text">' + address + '</p>'
+        );
+
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  };
+
+  // Add New Location with Current Location
+  $scope.currentLocation = function() {
+    $scope.geoLoc = initialLocation;
+  };
 
   // Geocoding
   geocoder = new google.maps.Geocoder();
-  $scope.codeAddress = function(address) {
+  $scope.codeAddress = function(address, name) {
     geocoder.geocode({'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-        // map.setCenter(results[0].geometry.location);
+
+        // Create Markers for All Locations
         var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
+          map: map,
+          position: results[0].geometry.location,
+          icon: {
+            anchor: new google.maps.Point(20, -30),
+            fillColor: '#b163a3',
+            fillOpacity: 1,
+            path: fontawesome.markers.MAP_MARKER,
+            scale: 0.65,
+            strokeColor: 'none',
+            strokeOpacity: 0,
+            strokeWeight: 0
+          }
         });
+
+        // Location Info Window on Click
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map, marker);
+          infowindow.setContent(
+            '<h4>' + name + '</h4>' +
+            '<p class="addr-text">' + address + '</p>'
+          );
+        });
+
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
   };
 
-  // Take Me There
-  $scope.takeMe = function(address) {
-    geocoder.geocode({'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        map.setCenter(results[0].geometry.location);
-      } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
-  };
 
 
   
@@ -147,6 +230,8 @@ mapAddr.controller('MapAddrController', ['$scope', function($scope) {
   //     }
   //   });
   // }
+
+
 
 
 
