@@ -8,7 +8,7 @@ class User
 
   validates :name, presence: true
   validates :email, # presence: true, (unnecessary with below email validation)
-            format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
+            format: { with: /\A[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,10})\z/i },
             uniqueness: { case_sensitive: false }
 
   has_secure_password
